@@ -31,27 +31,48 @@ public class StudentController {
 	private TeacherService teacherService;
 	
 	
-	@PostMapping("/addStudent")
-		public ResponseEntity<StatusDTO> addStudent(StudentDTO studentDTO) {
-		StudentDTO studentDTO2=null;		
+	//@PostMapping("/addstudent")
+//		public ResponseEntity<StatusDTO> addStudent(StudentDTO studentDTO) {
+//		StudentDTO studentDTO2=null;
+//		try {
+//			if(studentDTO.getTeacherDTO()!=null) {
+//				TeacherEntity teacherEntity=teacherService.getTeacherById(Long.parseLong(studentDTO.getTeacherDTO().getTeacherId()));
+//				if(teacherEntity==null)
+//					return ResponseEntity.of(Optional.of(new StatusDTO(0, "Teacher Not Found ")));
+//			}
+//			StudentEntity studentEntity= StudentTransformer.getStudentEntity(studentDTO);
+//			studentEntity.setStatus(true);
+//			StudentEntity student =  this.studentService.addStudent(studentEntity);
+//			studentDTO2=StudentTransformer.getStudentDTO(student);
+//			return ResponseEntity.of(Optional.of(new StatusDTO(1, "Success ",studentDTO2)));
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return ResponseEntity.of(Optional.of(new StatusDTO(0, "Exception occured "+e.getMessage())));
+//
+//		}
+//		//return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+//	}
+
+	@PostMapping("/addstudent")
+	public StatusDTO addStudent(StudentDTO studentDTO) {
+
 		try {
 			if(studentDTO.getTeacherDTO()!=null) {
-				TeacherEntity teacherEntity=teacherService.getTeacherById(Long.parseLong(studentDTO.getTeacherDTO().getTeacherId()));
-				if(teacherEntity==null)
-					return ResponseEntity.of(Optional.of(new StatusDTO(0, "Teacher Not Found ")));
+				TeacherEntity teacherEntity = teacherService.getTeacherById(Long.parseLong(studentDTO.getTeacherDTO().getTeacherId()));
+				if (teacherEntity == null)
+					return new StatusDTO(0, "Teacher Not Found ");
+
 			}
-			StudentEntity studentEntity= StudentTransformer.getStudentEntity(studentDTO);
-			studentEntity.setStatus(true);
-			StudentEntity student =  this.studentService.addStudent(studentEntity);			
-			studentDTO2=StudentTransformer.getStudentDTO(student);
-			return ResponseEntity.of(Optional.of(new StatusDTO(1, "Success ",studentDTO2)));
-			
+			StudentEntity entity = StudentTransformer.getStudentEntity(studentDTO);
+			entity.setStatus(true);
+			StudentEntity e = studentService.addStudent(entity);
+			StudentDTO  dto = StudentTransformer.getStudentDTO(e);
+			return new StatusDTO(1, "Success ",dto);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResponseEntity.of(Optional.of(new StatusDTO(0, "Exception occured "+e.getMessage())));
-			
+			return new StatusDTO(0, "Exception occured "+e.getMessage());
 		}
-		//return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();		
 	}
 	
 	@GetMapping("/allstudent")
@@ -62,7 +83,8 @@ public class StudentController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		studentDTOs= StudentTransformer.getStudentDTOs(studentEntities);
-		return ResponseEntity.status(HttpStatus.CREATED).body(new StatusDTO(1, "Success ",studentDTOs));
+		return ResponseEntity.of(Optional.of(new StatusDTO(1, "Success ",studentDTOs)));
+		//return ResponseEntity.status(HttpStatus.CREATED).body(new StatusDTO(1, "Success ",studentDTOs));
 		
 	}
 	
@@ -74,7 +96,7 @@ public class StudentController {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 		}
 		StudentDTO studentDTO= StudentTransformer.getStudentDTO(student);
-		return ResponseEntity.of(Optional.of(studentDTO));	
+		return ResponseEntity.of(Optional.of(studentDTO));
 		
 	}
 	

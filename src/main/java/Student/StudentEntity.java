@@ -1,28 +1,32 @@
 
 package Student;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
+import javax.persistence.*;
 
 @Entity
-public class StudentEntity {
-	
+@Getter
+@Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
+public class  StudentEntity {
+
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="student_id")
 	private Long id;
-	private String name;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	
+
+	@Column(name="student_first_name")
+	private String firstName;
+
+	@Column(name="student_last-name")
+	private String lastName;
+
+	@Column(name="student_email_id")
+	public String emaillId;
 
 }
