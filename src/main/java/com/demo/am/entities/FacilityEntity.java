@@ -16,8 +16,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Where(clause = "status=true")
-@Table(name="facility", catalog="amsapphire")
-public class FacilityEntity extends Entities{
+@Table(name="facility")
+public class FacilityEntity extends Model {
 	
 	
 	@Id
@@ -27,6 +27,12 @@ public class FacilityEntity extends Entities{
 	
 	@Column(name="facility_name")
 	private String facilityName;
+
+//	@Column(name="facility_password")
+//	private String facilityPassword;
+//
+//	@Column(name="facility_role")
+//	private String role;
 	
 	
 	//private boolean status = true;

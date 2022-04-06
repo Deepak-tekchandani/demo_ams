@@ -6,5 +6,6 @@ import org.springframework.data.repository.CrudRepository;
 import com.demo.am.entities.FacilityEntity;
 //built in @Repository
 public interface FacilityRepository extends CrudRepository<FacilityEntity, Long>, JpaRepository<FacilityEntity, Long> {
+   // public FacilityEntity findByUsername(String facilityName);
 
 }

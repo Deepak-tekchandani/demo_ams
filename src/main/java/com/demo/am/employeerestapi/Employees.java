@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @Setter
 @RequiredArgsConstructor
 @Table(name = "employees")
-public class Employee {
+public class Employees {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +31,7 @@ public class Employee {
     @Column(name = "email_id")
     private String emailId;
 
-    public Employee(String firstName, String lastName, String emailId) {
+    public Employees(String firstName, String lastName, String emailId) {
         super();
         this.firstName = firstName;
         this.lastName = lastName;

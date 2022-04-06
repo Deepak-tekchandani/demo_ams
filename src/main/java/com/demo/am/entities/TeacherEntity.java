@@ -17,7 +17,7 @@ import lombok.Setter;
 @Where(clause = "status=true")
 @Table(name="teacher")
 @Entity
-public class TeacherEntity extends Entities {
+public class TeacherEntity extends Model {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

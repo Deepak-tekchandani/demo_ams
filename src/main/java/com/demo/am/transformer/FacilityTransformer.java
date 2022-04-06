@@ -20,6 +20,12 @@ public class FacilityTransformer {
 		if (model.getFacilityName() != null) {
 			dto.setFacilityName(model.getFacilityName());
 		}
+//		if (model.getFacilityPassword() != null) {
+//			dto.setFacilityPasswoed(model.getFacilityPassword());
+//		}
+//		if (model.getRole() != null) {
+//			dto.setRole(model.getRole());
+//		}
 //		if (model.getCreatedBy() != null) {
 //			dto.setCreatedBy(model.getCreatedBy().toString());
 //		}
@@ -45,7 +51,13 @@ public class FacilityTransformer {
 		}
 		if (dto.getFacilityName() != null) {
 			model.setFacilityName(dto.getFacilityName());
-		}	
+		}
+//		if (dto.getFacilityPasswoed() != null) {
+//			model.setFacilityPassword(dto.getFacilityPasswoed());
+//		}
+//		if (dto.getRole() != null) {
+//			model.setRole(dto.getRole());
+//		}
 //		if (dto.getCreatedBy() != null) {
 //			model.setCreatedBy(Long.valueOf(dto.getCreatedBy()));
 //		}

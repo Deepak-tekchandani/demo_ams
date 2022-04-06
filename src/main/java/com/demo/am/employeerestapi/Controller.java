@@ -18,20 +18,20 @@ public class Controller {
 
     // get all employees
     @GetMapping("/employees")
-    public List<Employee> getAllEmployees(){
+    public List<Employees> getAllEmployees(){
         return employeeRepository.findAll();
     }
 
     // create employee rest api
     @PostMapping("/employees")
-    public Employee createEmployee(@RequestBody Employee employee) {
+    public Employees createEmployee(@RequestBody Employees employee) {
         return employeeRepository.save(employee);
     }
 
     // get employee by id rest api
     @GetMapping("/employees/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) {
-        Employee employee = employeeRepository.findById(id)
+    public ResponseEntity<Employees> getEmployeeById(@PathVariable Long id) {
+        Employees employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new Exception("Employee not exist with id :" + id));
         return ResponseEntity.ok(employee);
     }
@@ -39,22 +39,22 @@ public class Controller {
     // update employee rest api
 
     @PutMapping("/employees/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable Long id, @RequestBody Employee employeeDetails){
-        Employee employee = employeeRepository.findById(id)
+    public ResponseEntity<Employees> updateEmployee(@PathVariable Long id, @RequestBody Employees employeeDetails){
+        Employees employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new Exception("Employee not exist with id :" + id));
 
         employee.setFirstName(employeeDetails.getFirstName());
         employee.setLastName(employeeDetails.getLastName());
         employee.setEmailId(employeeDetails.getEmailId());
 
-        Employee updatedEmployee = employeeRepository.save(employee);
+        Employees updatedEmployee = employeeRepository.save(employee);
         return ResponseEntity.ok(updatedEmployee);
     }
 
     // delete employee rest api
     @DeleteMapping("/employees/{id}")
     public ResponseEntity<Map<String, Boolean>> deleteEmployee(@PathVariable Long id){
-        Employee employee = employeeRepository.findById(id)
+        Employees employee = employeeRepository.findById(id)
                 .orElseThrow(() -> new Exception("Employee not exist with id :" + id));
 
         employeeRepository.delete(employee);

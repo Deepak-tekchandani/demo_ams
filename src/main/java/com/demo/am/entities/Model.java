@@ -23,7 +23,7 @@ import lombok.ToString;
 @ToString
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public class Entities implements Serializable {
+public class Model implements Serializable {
 	
 	
     private static final long serialVersionUID = 1L;

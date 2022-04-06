@@ -1,6 +1,5 @@
 package com.demo.am.entities;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,7 +19,7 @@ import lombok.Setter;
 @Where(clause = "status=true")
 @Table(name="student")
 @Entity
-public class StudentEntity extends Entities {
+public class StudentEntity extends Model {
 	 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +28,9 @@ public class StudentEntity extends Entities {
 	
 	@Column(name="student_name")
 	private String studentName;
+
+//	@Column(name="student_password")
+//	private String studentPassword;
 	
 	@Column(name="student_address")
 	private String studentAddress;
